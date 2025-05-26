@@ -1,0 +1,630 @@
+* {
+  font-family: 'Minecraft Standard', monospace;
+  margin: 0;
+padding: 0;
+box-sizing: border-box;
+
+}
+@font-face {
+  font-family: 'Minecraft Standard';
+  src: url('../fonts/minecraft-standard.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+/*banner */
+.main-title {
+  font-family: 'Minecraft Standard', monospace;
+  font-size: clamp(1.5rem, 5vw, 3rem);
+  color: #5E2F2F;
+  margin: 0;
+  z-index: 10; 
+ position: relative; 
+ 
+}
+
+.banner {
+  background:  #FFDADA;
+  padding: 30px 20px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  min-height: 133px;
+}
+
+/* Cherry Blossom */
+.cherry-blossom {
+  position: absolute;
+  top: 0; 
+  z-index: 1;
+  height: 100%; 
+  display: flex;
+  align-items: flex-start; 
+}
+.cherry-blossom.left {
+  left: 10px;
+  transform: scaleX(-1);
+}
+
+.cherry-blossom.right {
+  right: 10px;
+  
+}
+.blossom-gif {
+  height: 140px; 
+  width: auto;
+  margin-top: -10px;
+}
+
+/* Desktop Nav */
+.desktop-nav {
+  background: rgba(255, 225, 240, 0.8);
+  border-top: 4px solid #5E2F2F;
+  border-bottom: 4px solid #5E2F2F;
+  padding: clamp(6px, 1.5vw, 12px) 0;
+  display: block;
+  box-shadow: 
+    0 4px 0 rgba(94, 47, 47, 0.3),
+    0 8px 0 rgba(94, 47, 47, 0.1);
+}
+.nav-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  gap: clamp(15px, 3vw, 35px);
+  padding: 0 20px;
+}
+
+.nav-button {
+  font-family: 'Minecraft Standard', monospace;
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid transparent;
+  color: #333;
+  font-size: clamp(0.7rem, 2vw, .9rem);
+  padding: clamp(4px, 1vw, 6px) clamp(6px, 2vw, 15px);
+  cursor: pointer;
+  border-radius: 0;
+  transition: all 0.3s ease;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav-button:hover {
+  background: rgba(255, 186, 221, 0.8);
+  color: #2c1810;
+  transform: translateX(4px); /* Same movement as mobile */
+  border-left: 6px solid #5E2F2F; /* Add left border like mobile */
+  box-shadow: 2px 2px 0 rgba(94, 47, 47, 0.3); /* Add shadow like mobile */
+  margin-bottom: 2px;
+  border-bottom: 3px solid #5E2F2F;
+}
+
+.nav-button.active {
+  background: rgba(255, 138, 197, 0.8);
+  color: #2c1810;
+  font-weight: bold;
+  border-left: 8px solid #5E2F2F; /* Add left border like mobile */
+ 
+}
+
+/* Icon Container */
+.nav-icons {
+  display: flex;
+  gap: 15px;
+  margin-left: auto;
+  align-items: center;
+}
+
+.icon-button {
+  font-family: 'Minecraft Standard', monospace;
+  background: rgba(248, 187, 217, 0.8);
+  border: 3px solid #5E2F2F;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 0;
+  transition: all 0.3s ease;
+  color: #5E2F2F;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 45px;
+  height: 45px;
+  box-shadow: 
+    4px 4px 0 rgba(94, 47, 47, 0.3),
+    8px 8px 0 rgba(94, 47, 47, 0.1);
+  position: relative;
+}
+
+.icon-button:hover {
+  background: rgba(255, 186, 221, 0.8);
+  box-shadow: 
+    6px 6px 0 rgba(94, 47, 47, 0.3),
+    10px 10px 0 rgba(94, 47, 47, 0.1);
+  border-left: 6px solid #5E2F2F;
+  transform: translateX(-3px);
+}
+
+.icon-button.active {
+  background: rgba(255, 138, 197, 0.8);
+  border-left: 8px solid #5E2F2F;
+}
+
+/* Mobile Navigation Icons */
+.mobile-nav-icons {
+  display: flex;
+  gap: 10px;
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  align-items: center;
+}
+
+.mobile-icon-button {
+  font-family: 'Minecraft Standard', monospace;
+  background: rgba(248, 187, 217, 0.8);
+  border: 2px solid #5E2F2F;
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 0;
+  transition: all 0.3s ease;
+  color: #5E2F2F;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 35px;
+  height: 35px;
+  box-shadow: 
+    3px 3px 0 rgba(94, 47, 47, 0.3),
+    6px 6px 0 rgba(94, 47, 47, 0.1);
+}
+
+.mobile-icon-button:hover {
+  background: rgba(255, 186, 221, 0.8);
+
+}
+
+.mobile-icon-button.active {
+  background: rgba(255, 138, 197, 0.8);
+
+}
+
+@media (max-width: 770px) {
+  .desktop-nav {
+    display: none;
+  }
+}
+
+/* Mobile Navigation */
+.mobile-nav {
+display: none; /* Hidden on desktop */
+position: relative;
+background: rgba(255, 225, 240, 0.8);
+border-top: 4px solid #5E2F2F;
+border-bottom: 4px solid #5E2F2F;
+padding: 15px;
+box-shadow: 
+  0 4px 0 rgba(94, 47, 47, 0.3),
+  0 8px 0 rgba(94, 47, 47, 0.1);
+}
+
+/* Hamburger Button */
+.hamburger-btn {
+background: rgba(248, 187, 217, 0.8);
+border: 3px solid #5E2F2F;
+cursor: pointer;
+padding: 15px;
+display: flex;
+flex-direction: column;
+gap: 4px;
+margin-right: 20px; /* Move to right side */
+margin-left: auto; /* Push to the right */
+transition: all 0.3s ease;
+align-items: center;
+justify-content: center;
+position: relative;
+height: 60px;
+width: 60px;
+border-radius: 0; /* Remove rounded corners for blocky look */
+box-shadow: 
+  4px 4px 0 rgba(94, 47, 47, 0.3),
+  8px 8px 0 rgba(94, 47, 47, 0.1);
+}
+
+
+.hamburger-line {
+width: 25px;
+height: 4px; /* Made slightly thicker */
+background: #5E2F2F;
+border-radius: 0; /* Remove rounded corners */
+transition: all 0.3s ease;
+transform-origin: center;
+position: absolute;
+box-shadow: 1px 1px 0 rgba(94, 47, 47, 0.5); /* Add depth */
+}
+
+.hamburger-line:first-child {
+top: calc(50% - 8px);
+}
+
+.hamburger-line:nth-child(2) {
+top: 50%;
+}
+
+.hamburger-line:last-child {
+top: calc(50% + 8px);
+}
+
+/* Hamburger Animation - Turn into separated vertical lines when open */
+.hamburger-btn.open .hamburger-line:first-child {
+transform: translateX(-9px) translateY(8px) rotate(90deg);
+}
+
+.hamburger-btn.open .hamburger-line:nth-child(2) {
+transform: rotate(90deg);
+}
+
+.hamburger-btn.open .hamburger-line:last-child {
+transform: translateX(9px) translateY(-8px) rotate(90deg);
+}
+
+/* Mobile Menu Dropdown */
+.mobile-menu {
+position: absolute; 
+top: 100%;
+left: 0;
+right: 0;
+background: rgba(252, 214, 233, 0.95);
+border: 4px solid #5E2F2F;
+border-top: none;
+max-height: 0;
+overflow: hidden;
+transition: max-height 0.3s ease;
+z-index: 100;
+box-shadow: 
+  4px 4px 0 rgba(94, 47, 47, 0.3),
+  8px 8px 0 rgba(94, 47, 47, 0.1);
+}
+
+.mobile-menu.open {
+max-height: 400px; /* Increased for more content */
+}
+
+/* Mobile Navigation Buttons */
+.mobile-nav-button {
+font-family: 'Minecraft Standard', monospace;
+background: rgba(255, 255, 255, 0.1);
+border: 2px solid transparent;
+color: #333;
+font-size: 0.9rem;
+padding: 15px 20px;
+cursor: pointer;
+width: 100%;
+text-align: left;
+display: flex;
+align-items: center;
+transition: all 0.2s ease;
+border-bottom: 3px solid #5E2F2F;
+margin-bottom: 2px;
+position: relative;
+}
+
+.mobile-nav-button::before {
+content: '▶';
+margin-right: 8px;
+color: #5E2F2F;
+font-size: 0.8rem;
+transition: all 0.2s ease;
+}
+
+.mobile-nav-button:hover {
+background: rgba(255, 186, 221, 0.8);
+color: #2c1810;
+transform: translateX(4px);
+border-left: 6px solid #5E2F2F;
+box-shadow: 2px 2px 0 rgba(94, 47, 47, 0.3);
+}
+
+.mobile-nav-button:hover::before {
+content: '▼';
+color: #2c1810;
+}
+
+.mobile-nav-button.active {
+background: rgba(255, 138, 197, 0.8);
+color: #2c1810;
+font-weight: bold;
+border-left: 8px solid #5E2F2F;
+
+}
+
+.mobile-nav-button.active::before {
+content: '♡';
+color: #2c1810;
+font-size: 1.2rem;
+
+}
+
+.mobile-nav-button:last-child {
+border-bottom: none;
+}
+
+/* Show mobile nav on small screens */
+@media (max-width: 770px) {
+.desktop-nav {
+  display: none;
+}
+
+.mobile-nav {
+  display: block;
+}
+
+.nav-icons {
+  display: none; /* Hide desktop icons on mobile */
+}
+
+.mobile-nav-icons {
+  display: flex; /* Show mobile icons */
+}
+}
+
+@media (min-width: 770px) {
+.mobile-nav-icons {
+  display: none; /* Hide mobile icons on desktop */
+}
+}
+
+.about-section {
+  background: white;
+  padding: 60px 20px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.about-container {
+  max-width: 800px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+.about-title {
+  font-family: 'Minecraft Standard', monospace;
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
+  color: #5E2F2F;
+  margin-bottom: 30px;
+  text-shadow: 2px 2px 0 rgba(94, 47, 47, 0.3);
+}
+
+.about-content-no-border {
+  padding: 40px 30px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  background: transparent;
+}
+
+.about-content-no-border:hover {
+  transform: translateY(-2px);
+}
+
+.about-text {
+  font-family: 'Minecraft Standard', monospace;
+  font-size: clamp(1rem, 2.5vw, 1.2rem);
+  color: #333;
+  line-height: 1.6;
+}
+
+/* Style for "Tap to learn more" part */
+.about-text::after {
+  content: " Tap to learn more";
+  color: #4CAF50;
+  font-weight: bold;
+}
+
+.click-indicator {
+  position: absolute;
+  bottom: 15px;
+  right: 20px;
+  color: #5E2F2F;
+  font-size: 1.5rem;
+  animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-10px);
+  }
+  60% {
+    transform: translateY(-5px);
+  }
+}
+
+.typing-cursor {
+  animation: blink 1s infinite;
+  color: #5E2F2F;
+  font-weight: bold;
+}
+
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+/* Dark Mode Styles */
+body.dark-mode {
+  background:rgb(47, 47, 47); /* Darker black background */
+  color: #fff;
+  transition: all 0.3s ease;
+}
+
+.dark-mode .banner {
+  background:rgb(17, 17, 17); /* Black background for banner */
+}
+
+.dark-mode .main-title {
+  color: #ffffff; /* White text */
+  text-shadow: 
+    0 0 10px rgba(223, 223, 223, 0.8),
+    0 0 20px rgba(255, 255, 255, 0.6),
+    0 0 30px rgba(255, 255, 255, 0.4),
+    0 0 40px rgba(255, 255, 255, 0.2); /* White glow effect */
+  filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.5));
+}
+
+.dark-mode .desktop-nav,
+.dark-mode .mobile-nav {
+  background: rgba(20, 20, 20, 0.8);
+  border-color:rgb(254, 246, 133);
+}
+
+.dark-mode .nav-button,
+.dark-mode .mobile-nav-button {
+  color: #fff;
+  border-color: rgb(254, 246, 133);
+}
+
+.dark-mode .nav-button:hover,
+.dark-mode .mobile-nav-button:hover {
+  background: rgba(255, 230, 138, 0.6);
+  color: #000;
+  border-left-color: rgb(254, 246, 133);
+  box-shadow: 2px 2px 0 rgba(255, 173, 105, 0.1);
+}
+
+.dark-mode .nav-button.active,
+.dark-mode .mobile-nav-button.active {
+  background: rgba(255, 239, 138, 0.8);
+  color: #000;
+ 
+}
+
+.dark-mode .about-section {
+  background: #0a0a0a; /* Black background */
+  color: #fff;
+}
+
+.dark-mode .about-title {
+  color: #ffffff;
+  text-shadow: 
+    0 0 8px rgba(255, 255, 255, 0.6),
+    0 0 16px rgba(255, 255, 255, 0.4),
+    0 0 24px rgba(255, 255, 255, 0.2); /* White glow for about title too */
+}
+
+.dark-mode .about-content-no-border {
+  color: #fff;
+}
+
+.dark-mode .about-text {
+  color: #fff;
+}
+
+.dark-mode .about-text::after {
+  color: #4CAF50; /* Keep green in dark mode too */
+}
+
+.dark-mode .learn-more-text {
+  color: #4CAF50;
+}
+
+.dark-mode .typing-cursor {
+  color: rgb(254, 246, 133);
+}
+
+.dark-mode .hamburger-btn {
+  background: rgba(40, 40, 40, 0.8);
+  border-color: rgb(254, 246, 133);
+  box-shadow: 
+  4px 4px 0 rgba(255, 213, 105, 0.3),
+  7px 7px 0 rgba(255, 173, 105, 0.1);
+}
+
+
+.dark-mode .hamburger-line {
+  background: rgb(254, 246, 133);
+  box-shadow: 1px 1px 0 rgba(255, 173, 105, 0.1);
+}
+
+.dark-mode .mobile-menu {
+  background: rgba(20, 20, 20, 0.95);
+  border-color: rgb(254, 246, 133);
+  box-shadow: 
+  4px 4px 0 rgba(255, 213, 105, 0.3),
+  7px 7px 0 rgba(255, 173, 105, 0.1);
+}
+
+/* Dark mode cherry blossoms - make them more visible */
+.dark-mode .cherry-blossom {
+  filter: brightness(1.2) contrast(1.1);
+}
+
+/* Dark mode main content area */
+.dark-mode main {
+  background: #0a0a0a;
+  color: #fff;
+}
+
+/* Dark mode icon styles */
+.dark-mode .icon-button {
+  background: rgba(80, 80, 80, 0.8);
+  border-color:rgb(254, 246, 133);
+  color:rgb(254, 246, 133);
+  box-shadow: 
+    4px 4px 0 rgba(255, 213, 105, 0.3),
+    7px 7px 0 rgba(255, 173, 105, 0.1);
+}
+
+.dark-mode .icon-button:hover {
+  background: rgba(120, 120, 120, 0.8);
+  border-left-color: rgb(254, 246, 133);
+  box-shadow: 
+    4px 4px 0 rgba(255, 213, 105, 0.3),
+    7px 7px 0 rgba(255, 173, 105, 0.1);
+  transform: translateX(-6px);
+}
+
+.dark-mode .icon-button.active {
+  background: rgba(160, 160, 160, 0.8);
+  border-left-color: rgb(254, 246, 133);
+}
+
+.dark-mode .mobile-icon-button {
+  background: rgba(80, 80, 80, 0.8);
+  border-color: rgb(254, 246, 133);
+  color: rgb(254, 246, 133);
+  box-shadow: 
+    4px 4px 0 rgba(255, 213, 105, 0.3),
+    7px 7px 0 rgba(255, 173, 105, 0.1);
+}
+
+.dark-mode .mobile-icon-button:hover {
+  background: rgba(120, 120, 120, 0.8);
+  box-shadow: 
+    4px 4px 0 rgba(255, 213, 105, 0.3),
+    7px 7px 0 rgba(255, 173, 105, 0.1);
+}
+
+.dark-mode .mobile-icon-button.active {
+  background: rgba(160, 160, 160, 0.8);
+
+}
+.dark-mode .mobile-nav-button::before {
+  color: rgb(254, 246, 133); /* Yellow arrow color in dark mode */
+}
+
+.dark-mode .mobile-nav-button:hover::before {
+  color: #000; /* Black arrow when hovering in dark mode */
+}
+
+.dark-mode .mobile-nav-button.active::before {
+  color: #000; /* Black heart when active in dark mode */
+}
