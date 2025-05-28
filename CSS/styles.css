@@ -1,29 +1,43 @@
 * {
   font-family: 'Minecraft Standard', monospace;
   margin: 0;
-padding: 0;
-box-sizing: border-box;
-
+  padding: 0;
+  box-sizing: border-box;
 }
+
 @font-face {
   font-family: 'Minecraft Standard';
   src: url('../fonts/minecraft-standard.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
-/*banner */
+
+/* Main page background */
+body {
+  background: rgba(255, 225, 240, 0.8);
+  color: #5E2F2F;
+  transition: all 0.3s ease;
+  margin: 0;
+  padding: 0;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Banner */
 .main-title {
   font-family: 'Minecraft Standard', monospace;
   font-size: clamp(1.5rem, 5vw, 3rem);
   color: #5E2F2F;
   margin: 0;
   z-index: 10; 
- position: relative; 
- 
+  position: relative; 
 }
 
 .banner {
-  background:  #FFDADA;
+  background: #FFDADA;
   padding: 30px 20px;
   text-align: center;
   position: relative;
@@ -39,7 +53,9 @@ box-sizing: border-box;
   height: 100%; 
   display: flex;
   align-items: flex-start; 
+  filter: hue-rotate(-10deg) contrast(.98);
 }
+
 .cherry-blossom.left {
   left: 10px;
   transform: scaleX(-1);
@@ -47,8 +63,8 @@ box-sizing: border-box;
 
 .cherry-blossom.right {
   right: 10px;
-  
 }
+
 .blossom-gif {
   height: 140px; 
   width: auto;
@@ -66,6 +82,7 @@ box-sizing: border-box;
     0 4px 0 rgba(94, 47, 47, 0.3),
     0 8px 0 rgba(94, 47, 47, 0.1);
 }
+
 .nav-container {
   max-width: 1200px;
   margin: 0 auto;
@@ -78,8 +95,8 @@ box-sizing: border-box;
 .nav-button {
   font-family: 'Minecraft Standard', monospace;
   background: rgba(255, 255, 255, 0.1);
-  border: 2px solid transparent;
-  color: #333;
+  border: 2px solid #5E2F2F;
+  color: #5E2F2F;
   font-size: clamp(0.7rem, 2vw, .9rem);
   padding: clamp(4px, 1vw, 6px) clamp(6px, 2vw, 15px);
   cursor: pointer;
@@ -89,14 +106,17 @@ box-sizing: border-box;
   display: flex;
   align-items: center;
   justify-content: center;
+  box-shadow: 
+    3px 3px 0 rgba(94, 47, 47, 0.3),
+    6px 6px 0 rgba(94, 47, 47, 0.1);
 }
 
 .nav-button:hover {
   background: rgba(255, 186, 221, 0.8);
   color: #2c1810;
-  transform: translateX(4px); /* Same movement as mobile */
-  border-left: 6px solid #5E2F2F; /* Add left border like mobile */
-  box-shadow: 2px 2px 0 rgba(94, 47, 47, 0.3); /* Add shadow like mobile */
+  transform: translateX(4px);
+  border-left: 6px solid #5E2F2F;
+  box-shadow: 2px 2px 0 rgba(94, 47, 47, 0.3);
   margin-bottom: 2px;
   border-bottom: 3px solid #5E2F2F;
 }
@@ -105,8 +125,7 @@ box-sizing: border-box;
   background: rgba(255, 138, 197, 0.8);
   color: #2c1810;
   font-weight: bold;
-  border-left: 8px solid #5E2F2F; /* Add left border like mobile */
- 
+  border-left: 8px solid #5E2F2F;
 }
 
 /* Icon Container */
@@ -185,12 +204,10 @@ box-sizing: border-box;
 
 .mobile-icon-button:hover {
   background: rgba(255, 186, 221, 0.8);
-
 }
 
 .mobile-icon-button.active {
   background: rgba(255, 138, 197, 0.8);
-
 }
 
 @media (max-width: 770px) {
@@ -201,189 +218,199 @@ box-sizing: border-box;
 
 /* Mobile Navigation */
 .mobile-nav {
-display: none; /* Hidden on desktop */
-position: relative;
-background: rgba(255, 225, 240, 0.8);
-border-top: 4px solid #5E2F2F;
-border-bottom: 4px solid #5E2F2F;
-padding: 15px;
-box-shadow: 
-  0 4px 0 rgba(94, 47, 47, 0.3),
-  0 8px 0 rgba(94, 47, 47, 0.1);
+  display: none;
+  position: relative;
+  background: rgba(255, 225, 240, 0.8);
+  border-top: 4px solid #5E2F2F;
+  border-bottom: 4px solid #5E2F2F;
+  padding: 15px;
+  box-shadow: 
+    0 4px 0 rgba(94, 47, 47, 0.3),
+    0 8px 0 rgba(94, 47, 47, 0.1);
 }
 
 /* Hamburger Button */
 .hamburger-btn {
-background: rgba(248, 187, 217, 0.8);
-border: 3px solid #5E2F2F;
-cursor: pointer;
-padding: 15px;
-display: flex;
-flex-direction: column;
-gap: 4px;
-margin-right: 20px; /* Move to right side */
-margin-left: auto; /* Push to the right */
-transition: all 0.3s ease;
-align-items: center;
-justify-content: center;
-position: relative;
-height: 60px;
-width: 60px;
-border-radius: 0; /* Remove rounded corners for blocky look */
-box-shadow: 
-  4px 4px 0 rgba(94, 47, 47, 0.3),
-  8px 8px 0 rgba(94, 47, 47, 0.1);
+  background: rgba(248, 187, 217, 0.8);
+  border: 3px solid #5E2F2F;
+  cursor: pointer;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-right: 20px;
+  margin-left: auto;
+  transition: all 0.3s ease;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  height: 60px;
+  width: 60px;
+  border-radius: 0;
+  box-shadow: 
+    4px 4px 0 rgba(94, 47, 47, 0.3),
+    8px 8px 0 rgba(94, 47, 47, 0.1);
 }
 
-
 .hamburger-line {
-width: 25px;
-height: 4px; /* Made slightly thicker */
-background: #5E2F2F;
-border-radius: 0; /* Remove rounded corners */
-transition: all 0.3s ease;
-transform-origin: center;
-position: absolute;
-box-shadow: 1px 1px 0 rgba(94, 47, 47, 0.5); /* Add depth */
+  width: 25px;
+  height: 4px;
+  background: #5E2F2F;
+  border-radius: 0;
+  transition: all 0.3s ease;
+  transform-origin: center;
+  position: absolute;
+  box-shadow: 1px 1px 0 rgba(94, 47, 47, 0.5);
 }
 
 .hamburger-line:first-child {
-top: calc(50% - 8px);
+  top: calc(50% - 8px);
 }
 
 .hamburger-line:nth-child(2) {
-top: 50%;
+  top: 50%;
 }
 
 .hamburger-line:last-child {
-top: calc(50% + 8px);
+  top: calc(50% + 8px);
 }
 
-/* Hamburger Animation - Turn into separated vertical lines when open */
+/* Hamburger Animation */
 .hamburger-btn.open .hamburger-line:first-child {
-transform: translateX(-9px) translateY(8px) rotate(90deg);
+  transform: translateX(-9px) translateY(8px) rotate(90deg);
 }
 
 .hamburger-btn.open .hamburger-line:nth-child(2) {
-transform: rotate(90deg);
+  transform: rotate(90deg);
 }
 
 .hamburger-btn.open .hamburger-line:last-child {
-transform: translateX(9px) translateY(-8px) rotate(90deg);
+  transform: translateX(9px) translateY(-8px) rotate(90deg);
 }
 
 /* Mobile Menu Dropdown */
 .mobile-menu {
-position: absolute; 
-top: 100%;
-left: 0;
-right: 0;
-background: rgba(252, 214, 233, 0.95);
-border: 4px solid #5E2F2F;
-border-top: none;
-max-height: 0;
-overflow: hidden;
-transition: max-height 0.3s ease;
-z-index: 100;
-box-shadow: 
-  4px 4px 0 rgba(94, 47, 47, 0.3),
-  8px 8px 0 rgba(94, 47, 47, 0.1);
+  position: absolute; 
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: rgba(252, 214, 233, 0.95);
+  border: 4px solid #5E2F2F;
+  border-top: none;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+  z-index: 100;
+  box-shadow: 
+    4px 4px 0 rgba(94, 47, 47, 0.3),
+    8px 8px 0 rgba(94, 47, 47, 0.1);
 }
 
 .mobile-menu.open {
-max-height: 400px; /* Increased for more content */
+  max-height: 400px;
 }
 
 /* Mobile Navigation Buttons */
 .mobile-nav-button {
-font-family: 'Minecraft Standard', monospace;
-background: rgba(255, 255, 255, 0.1);
-border: 2px solid transparent;
-color: #333;
-font-size: 0.9rem;
-padding: 15px 20px;
-cursor: pointer;
-width: 100%;
-text-align: left;
-display: flex;
-align-items: center;
-transition: all 0.2s ease;
-border-bottom: 3px solid #5E2F2F;
-margin-bottom: 2px;
-position: relative;
+  font-family: 'Minecraft Standard', monospace;
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid #5E2F2F;
+  color: #5E2F2F;
+  font-size: 0.9rem;
+  padding: 15px 20px;
+  cursor: pointer;
+  width: 100%;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  transition: all 0.2s ease;
+  border-bottom: 3px solid #5E2F2F;
+  margin-bottom: 2px;
+  position: relative;
+  box-shadow: 
+    2px 2px 0 rgba(94, 47, 47, 0.3),
+    4px 4px 0 rgba(94, 47, 47, 0.1);
 }
 
 .mobile-nav-button::before {
-content: '▶';
-margin-right: 8px;
-color: #5E2F2F;
-font-size: 0.8rem;
-transition: all 0.2s ease;
+  content: '▶';
+  margin-right: 8px;
+  color: #5E2F2F;
+  font-size: 0.8rem;
+  transition: all 0.2s ease;
 }
 
 .mobile-nav-button:hover {
-background: rgba(255, 186, 221, 0.8);
-color: #2c1810;
-transform: translateX(4px);
-border-left: 6px solid #5E2F2F;
-box-shadow: 2px 2px 0 rgba(94, 47, 47, 0.3);
+  background: rgba(255, 186, 221, 0.8);
+  color: #2c1810;
+  transform: translateX(4px);
+  border-left: 6px solid #5E2F2F;
+  box-shadow: 2px 2px 0 rgba(94, 47, 47, 0.3);
 }
 
 .mobile-nav-button:hover::before {
-content: '▼';
-color: #2c1810;
+  content: '▼';
+  color: #2c1810;
 }
 
 .mobile-nav-button.active {
-background: rgba(255, 138, 197, 0.8);
-color: #2c1810;
-font-weight: bold;
-border-left: 8px solid #5E2F2F;
-
+  background: rgba(255, 138, 197, 0.8);
+  color: #2c1810;
+  font-weight: bold;
+  border-left: 8px solid #5E2F2F;
 }
 
 .mobile-nav-button.active::before {
-content: '♡';
-color: #2c1810;
-font-size: 1.2rem;
-
+  content: '♡';
+  color: #2c1810;
+  font-size: 1.2rem;
 }
 
 .mobile-nav-button:last-child {
-border-bottom: none;
+  border-bottom: none;
 }
 
 /* Show mobile nav on small screens */
 @media (max-width: 770px) {
-.desktop-nav {
-  display: none;
-}
+  .desktop-nav {
+    display: none;
+  }
 
-.mobile-nav {
-  display: block;
-}
+  .mobile-nav {
+    display: block;
+  }
 
-.nav-icons {
-  display: none; /* Hide desktop icons on mobile */
-}
+  .nav-icons {
+    display: none;
+  }
 
-.mobile-nav-icons {
-  display: flex; /* Show mobile icons */
-}
+  .mobile-nav-icons {
+    display: flex;
+  }
 }
 
 @media (min-width: 770px) {
-.mobile-nav-icons {
-  display: none; /* Hide mobile icons on desktop */
-}
+  .mobile-nav-icons {
+    display: none;
+  }
 }
 
+/* About Section - FULL VIEWPORT HEIGHT minus header */
 .about-section {
   background: white;
-  padding: 60px 20px;
   text-align: center;
   position: relative;
   overflow: hidden;
+  margin-top: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding-top: 40px;
+  padding-bottom: 200px; 
+  padding-left: 20px;
+  padding-right: 20px;
+  box-sizing: border-box;
 }
 
 .about-container {
@@ -391,6 +418,12 @@ border-bottom: none;
   margin: 0 auto;
   position: relative;
   z-index: 2;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  margin-bottom: 40px;
+  margin-top: 30px;
 }
 
 .about-title {
@@ -402,7 +435,7 @@ border-bottom: none;
 }
 
 .about-content-no-border {
-  padding: 40px 30px;
+  padding: 20px 30px;
   cursor: pointer;
   transition: all 0.3s ease;
   position: relative;
@@ -416,36 +449,242 @@ border-bottom: none;
 .about-text {
   font-family: 'Minecraft Standard', monospace;
   font-size: clamp(1rem, 2.5vw, 1.2rem);
-  color: #333;
+  color: #5E2F2F;
   line-height: 1.6;
 }
 
-/* Style for "Tap to learn more" part */
-.about-text::after {
-  content: " Tap to learn more";
-  color: #4CAF50;
-  font-weight: bold;
+.about-text-preformatted {
+  white-space: pre-line;
 }
 
-.click-indicator {
-  position: absolute;
-  bottom: 15px;
-  right: 20px;
+.about-content-pointer {
+  cursor: pointer;
+}
+
+.about-content-default {
+  cursor: default;
+}
+
+/* Main content area - STARTS BELOW THE FOLD */
+main {
+  background: rgba(255, 225, 240, 0.8);
   color: #5E2F2F;
-  font-size: 1.5rem;
-  animation: bounce 2s infinite;
+  padding: 40px 20px;
+  min-height: 100vh;
+  box-sizing: border-box;
 }
 
-@keyframes bounce {
-  0%, 20%, 50%, 80%, 100% {
+/* Main content animation classes */
+.main-initial {
+  opacity: 0;
+  transform: translateY(50px);
+}
+
+.main-animated {
+  animation: blurFadeIn 1s ease-out forwards;
+}
+
+/* Animation keyframes */
+@keyframes fadeSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
     transform: translateY(0);
   }
-  40% {
-    transform: translateY(-10px);
+}
+
+@keyframes scaleFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
   }
-  60% {
-    transform: translateY(-5px);
+  to {
+    opacity: 1;
+    transform: scale(1);
   }
+}
+
+@keyframes blurFadeIn {
+  from {
+    opacity: 0;
+    filter: blur(10px);
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateY(0);
+  }
+}
+
+/* Stagger animations for content inside main */
+.main-animated > * {
+  opacity: 0;
+  animation: fadeSlideUp 0.8s ease-out forwards;
+}
+
+.main-animated > *:nth-child(1) {
+  animation-delay: 0.2s;
+}
+
+.main-animated > *:nth-child(2) {
+  animation-delay: 0.4s;
+}
+
+.main-animated > *:nth-child(3) {
+  animation-delay: 0.6s;
+}
+
+.main-animated > *:nth-child(4) {
+  animation-delay: 0.8s;
+}
+
+.main-animated > *:nth-child(5) {
+  animation-delay: 1.0s;
+}
+
+.main-animated > *:nth-child(6) {
+  animation-delay: 1.2s;
+}
+
+/* Section Headers */
+.section-header {
+  font-family: 'Minecraft Standard', monospace;
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  color: #5E2F2F;
+  text-align: center;
+  margin-bottom: 15px;
+  text-shadow: 2px 2px 0 rgba(94, 47, 47, 0.3);
+}
+
+.section-text {
+  font-family: 'Minecraft Standard', monospace;
+  font-size: clamp(1rem, 2.5vw, 1.1rem);
+  color: #5E2F2F;
+  text-align: center;
+  line-height: 1.6;
+  margin-bottom: 20px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.section-text-top-margin {
+  margin-top: 40px;
+  margin-bottom: 20px;
+}
+
+/* Quiz Link Styles */
+.quiz-link {
+  display: inline-block;
+  background: #ff69b4;
+  color: white;
+  padding: 12px 24px;
+  border: 3px solid #5E2F2F;
+  font-family: 'Minecraft Standard', monospace;
+  font-weight: bold;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin: 20px 10px;
+  box-shadow: 
+    3px 3px 0 rgba(94, 47, 47, 0.3),
+    6px 6px 0 rgba(94, 47, 47, 0.1);
+}
+
+.quiz-link:hover {
+  background: #ff1493;
+  transform: translateY(-2px);
+  box-shadow: 
+    5px 5px 0 rgba(94, 47, 47, 0.3),
+    8px 8px 0 rgba(94, 47, 47, 0.1);
+}
+
+.quiz-container {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+/* Product Gallery Styles */
+.product-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  margin-top: 30px;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.product-card {
+  background: rgba(255, 255, 255, 0.1);
+  border: 3px solid #5E2F2F;
+  padding: 20px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 
+    3px 3px 0 rgba(94, 47, 47, 0.3),
+    6px 6px 0 rgba(94, 47, 47, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.product-card:hover {
+  background: rgba(255, 186, 221, 0.3);
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 
+    5px 5px 0 rgba(94, 47, 47, 0.3),
+    10px 10px 0 rgba(94, 47, 47, 0.1);
+}
+
+.product-image {
+  font-size: 3rem;
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 120px;
+  background: rgba(255, 255, 255, 0.8);
+  border: 2px solid #5E2F2F;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+.product-img {
+  width: 80%;
+  height: 80%;
+  object-fit: contain;
+  transition: all 0.3s ease;
+}
+
+.product-card:hover .product-image {
+  background: rgba(255, 255, 255, 1);
+  transform: scale(1.1);
+}
+
+.product-card:hover .product-img {
+  transform: scale(1.1);
+}
+
+.product-name {
+  font-family: 'Minecraft Standard', monospace;
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #5E2F2F;
+  margin-bottom: 8px;
+}
+
+.product-description {
+  font-family: 'Minecraft Standard', monospace;
+  font-size: 0.9rem;
+  color: #5E2F2F;
+  opacity: 0.8;
 }
 
 .typing-cursor {
@@ -459,31 +698,187 @@ border-bottom: none;
   51%, 100% { opacity: 0; }
 }
 
+/* Click Continue Indicator */
+.click-continue {
+  text-align: center;
+  margin-top: 10px;
+  font-size: 14px;
+  color: #5E2F2F;
+  font-style: italic;
+  font-family: 'Minecraft Standard', monospace;
+}
+
+/* Undertone Color Blocks */
+.undertone-block {
+  font-family: 'Minecraft Standard', monospace;
+  display: flex;
+  align-items: center;
+  margin: 15px 0;
+  padding: 10px;
+  border: 3px solid #5E2F2F;
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: 
+    3px 3px 0 rgba(94, 47, 47, 0.3),
+    6px 6px 0 rgba(94, 47, 47, 0.1);
+  transition: all 0.3s ease;
+}
+
+.undertone-block:hover {
+  transform: translateX(2px) translateY(-2px);
+  box-shadow: 
+    5px 5px 0 rgba(94, 47, 47, 0.3),
+    8px 8px 0 rgba(94, 47, 47, 0.1);
+}
+
+.color-blocks-container {
+  display: flex;
+  gap: 5px;
+  margin-right: 15px;
+  flex-shrink: 0;
+}
+
+.color-block {
+  width: 25px;
+  height: 40px;
+  border: 2px solid #5E2F2F;
+  box-shadow: 
+    2px 2px 0 rgba(94, 47, 47, 0.3);
+}
+
+/* Cool Undertone Colors */
+.cool-block-1 {
+  background: #ff69b4; /* Pink */
+}
+
+.cool-block-2 {
+  background: #87ceeb; /* Sky Blue */
+}
+
+.cool-block-3 {
+  background: #dda0dd; /* Purple */
+}
+
+/* Warm Undertone Colors */
+.warm-block-1 {
+  background: #ffd700; /* Gold */
+}
+
+.warm-block-2 {
+  background: #ffa500; /* Orange */
+}
+
+.warm-block-3 {
+  background: #ff6347; /* Coral */
+}
+
+/* Neutral Undertone Colors */
+.neutral-block-1 {
+  background: #c0c0c0; /* Silver */
+}
+
+.neutral-block-2 {
+  background: #ffd700; /* Gold */
+}
+
+.neutral-block-3 {
+  background: #f5deb3; /* Beige */
+}
+
+/* Olive Undertone Colors */
+.olive-block-1 {
+  background: #9acd32; /* Yellow Green */
+}
+
+.olive-block-2 {
+  background: #6b8e23; /* Olive Drab */
+}
+
+.olive-block-3 {
+  background: #556b2f; /* Dark Olive Green */
+}
+
+.undertone-text {
+  flex: 1;
+  text-align: left;
+  line-height: 1.4;
+  color: #5E2F2F;
+}
+
+.undertone-container {
+  text-align: left;
+  max-width: 600px;
+  margin: 20px auto;
+}
+
+.undertone-description {
+  text-align: center;
+  margin-top: 20px;
+  font-style: italic;
+}
+
+/* Go Back Button Styles */
+.go-back-button {
+  font-family: 'Minecraft Standard', monospace;
+  padding: 8px 16px;
+  background: #ff69b4;
+  color: white;
+  border: 3px solid #5E2F2F;
+  border-radius: 0;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  box-shadow: 
+    3px 3px 0 rgba(94, 47, 47, 0.3),
+    6px 6px 0 rgba(94, 47, 47, 0.1);
+  position: relative;
+}
+
+.go-back-button:hover {
+  background: #ff1493;
+  transform: translateX(-2px) translateY(-2px);
+  box-shadow: 
+    5px 5px 0 rgba(94, 47, 47, 0.3),
+    8px 8px 0 rgba(94, 47, 47, 0.1);
+}
+
+.go-back-button:active {
+  transform: translateX(1px) translateY(1px);
+  box-shadow: 
+    2px 2px 0 rgba(94, 47, 47, 0.3),
+    4px 4px 0 rgba(94, 47, 47, 0.1);
+}
+
+.go-back-container {
+  text-align: center;
+  margin-top: 15px;
+}
+
 /* Dark Mode Styles */
 body.dark-mode {
-  background:rgb(47, 47, 47); /* Darker black background */
+  background: rgb(20, 20, 20);
   color: #fff;
   transition: all 0.3s ease;
 }
 
 .dark-mode .banner {
-  background:rgb(17, 17, 17); /* Black background for banner */
+  background: rgb(0, 0, 0);
 }
 
 .dark-mode .main-title {
-  color: #ffffff; /* White text */
+  color: #ffffff;
   text-shadow: 
-    0 0 10px rgba(223, 223, 223, 0.8),
-    0 0 20px rgba(255, 255, 255, 0.6),
-    0 0 30px rgba(255, 255, 255, 0.4),
-    0 0 40px rgba(255, 255, 255, 0.2); /* White glow effect */
+    0 0 10px rgba(161, 161, 161, 0.8),
+    0 0 20px rgba(181, 181, 181, 0.6),
+    0 0 30px rgba(187, 187, 187, 0.4),
+    0 0 40px rgba(193, 193, 193, 0.2);
   filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.5));
 }
 
 .dark-mode .desktop-nav,
 .dark-mode .mobile-nav {
   background: rgba(20, 20, 20, 0.8);
-  border-color:rgb(254, 246, 133);
+  border-color: rgb(254, 246, 133);
 }
 
 .dark-mode .nav-button,
@@ -504,11 +899,10 @@ body.dark-mode {
 .dark-mode .mobile-nav-button.active {
   background: rgba(255, 239, 138, 0.8);
   color: #000;
- 
 }
 
 .dark-mode .about-section {
-  background: #0a0a0a; /* Black background */
+  background: #0a0a0a;
   color: #fff;
 }
 
@@ -517,7 +911,7 @@ body.dark-mode {
   text-shadow: 
     0 0 8px rgba(255, 255, 255, 0.6),
     0 0 16px rgba(255, 255, 255, 0.4),
-    0 0 24px rgba(255, 255, 255, 0.2); /* White glow for about title too */
+    0 0 24px rgba(255, 255, 255, 0.2);
 }
 
 .dark-mode .about-content-no-border {
@@ -528,26 +922,21 @@ body.dark-mode {
   color: #fff;
 }
 
-.dark-mode .about-text::after {
-  color: #4CAF50; /* Keep green in dark mode too */
-}
-
-.dark-mode .learn-more-text {
-  color: #4CAF50;
-}
-
 .dark-mode .typing-cursor {
   color: rgb(254, 246, 133);
+}
+
+.dark-mode .click-continue {
+  color: #ccc;
 }
 
 .dark-mode .hamburger-btn {
   background: rgba(40, 40, 40, 0.8);
   border-color: rgb(254, 246, 133);
   box-shadow: 
-  4px 4px 0 rgba(255, 213, 105, 0.3),
-  7px 7px 0 rgba(255, 173, 105, 0.1);
+    4px 4px 0 rgba(255, 213, 105, 0.3),
+    7px 7px 0 rgba(255, 173, 105, 0.1);
 }
-
 
 .dark-mode .hamburger-line {
   background: rgb(254, 246, 133);
@@ -558,26 +947,23 @@ body.dark-mode {
   background: rgba(20, 20, 20, 0.95);
   border-color: rgb(254, 246, 133);
   box-shadow: 
-  4px 4px 0 rgba(255, 213, 105, 0.3),
-  7px 7px 0 rgba(255, 173, 105, 0.1);
+    4px 4px 0 rgba(255, 213, 105, 0.3),
+    7px 7px 0 rgba(255, 173, 105, 0.1);
 }
 
-/* Dark mode cherry blossoms - make them more visible */
 .dark-mode .cherry-blossom {
-  filter: brightness(1.2) contrast(1.1);
+  filter: brightness(1.2) contrast(.7);
 }
 
-/* Dark mode main content area */
 .dark-mode main {
-  background: #0a0a0a;
+  background: rgb(20, 20, 20);
   color: #fff;
 }
 
-/* Dark mode icon styles */
 .dark-mode .icon-button {
   background: rgba(80, 80, 80, 0.8);
-  border-color:rgb(254, 246, 133);
-  color:rgb(254, 246, 133);
+  border-color: rgb(254, 246, 133);
+  color: rgb(254, 246, 133);
   box-shadow: 
     4px 4px 0 rgba(255, 213, 105, 0.3),
     7px 7px 0 rgba(255, 173, 105, 0.1);
@@ -615,16 +1001,221 @@ body.dark-mode {
 
 .dark-mode .mobile-icon-button.active {
   background: rgba(160, 160, 160, 0.8);
-
 }
+
 .dark-mode .mobile-nav-button::before {
-  color: rgb(254, 246, 133); /* Yellow arrow color in dark mode */
+  color: rgb(254, 246, 133);
 }
 
 .dark-mode .mobile-nav-button:hover::before {
-  color: #000; /* Black arrow when hovering in dark mode */
+  color: #000;
 }
 
 .dark-mode .mobile-nav-button.active::before {
-  color: #000; /* Black heart when active in dark mode */
+  color: #000;
+}
+
+.dark-mode .go-back-button {
+  background: rgb(254, 246, 133);
+  color: #000;
+  border-color: #fff;
+  box-shadow: 
+    3px 3px 0 rgba(255, 255, 255, 0.3),
+    6px 6px 0 rgba(255, 255, 255, 0.1);
+}
+
+.dark-mode .go-back-button:hover {
+  background: rgb(255, 230, 138);
+  box-shadow: 
+    5px 5px 0 rgba(255, 255, 255, 0.3),
+    8px 8px 0 rgba(255, 255, 255, 0.1);
+}
+
+.dark-mode .undertone-block {
+  border-color: rgb(254, 246, 133);
+  background: rgba(0, 0, 0, 0.2);
+  box-shadow: 
+    3px 3px 0 rgba(254, 246, 133, 0.3),
+    6px 6px 0 rgba(254, 246, 133, 0.1);
+}
+
+.dark-mode .undertone-block:hover {
+  box-shadow: 
+    5px 5px 0 rgba(254, 246, 133, 0.3),
+    8px 8px 0 rgba(254, 246, 133, 0.1);
+}
+
+.dark-mode .color-block {
+  border-color: rgb(254, 246, 133);
+  box-shadow: 
+    2px 2px 0 rgba(254, 246, 133, 0.3);
+}
+
+.dark-mode .undertone-text {
+  color: #fff;
+}
+
+/* Dark mode styles for new elements */
+.dark-mode .product-card {
+  border-color: rgb(254, 246, 133);
+  background: rgba(0, 0, 0, 0.2);
+  box-shadow: 
+    3px 3px 0 rgba(254, 246, 133, 0.3),
+    6px 6px 0 rgba(254, 246, 133, 0.1);
+}
+
+.dark-mode .product-card:hover {
+  background: rgba(255, 230, 138, 0.2);
+  box-shadow: 
+    5px 5px 0 rgba(254, 246, 133, 0.3),
+    10px 10px 0 rgba(254, 246, 133, 0.1);
+}
+
+.dark-mode .product-image {
+  border-color: rgb(254, 246, 133);
+  background: rgba(255, 255, 255, 1);
+}
+
+.dark-mode .product-card:hover .product-img {
+  transform: scale(1.1);
+}
+
+.dark-mode .product-name,
+.dark-mode .product-description {
+  color: #fff;
+}
+
+.dark-mode .section-header,
+.dark-mode .section-text {
+  color: #fff;
+}
+
+.dark-mode .quiz-link {
+  background: rgb(254, 246, 133);
+  color: #000;
+  border-color: #fff;
+  box-shadow: 
+    3px 3px 0 rgba(255, 255, 255, 0.3),
+    6px 6px 0 rgba(255, 255, 255, 0.1);
+}
+
+.dark-mode .quiz-link:hover {
+  background: rgb(255, 230, 138);
+  box-shadow: 
+    5px 5px 0 rgba(255, 255, 255, 0.3),
+    8px 8px 0 rgba(255, 255, 255, 0.1);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .about-section {
+    min-height: 100vh;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+  
+  .go-back-button {
+    font-size: 12px;
+    padding: 6px 12px;
+  }
+  
+  .click-continue {
+    font-size: 12px;
+  }
+  
+  .undertone-block {
+    flex-direction: column;
+    text-align: center;
+    padding: 15px;
+  }
+  
+  .color-blocks-container {
+    margin-right: 0;
+    margin-bottom: 10px;
+    justify-content: center;
+  }
+  
+  .color-block {
+    width: 22px;
+    height: 35px;
+  }
+  
+  .undertone-text {
+    text-align: center;
+  }
+  
+  .undertone-container {
+    max-width: 100%;
+    padding: 0 10px;
+  }
+
+  /* Responsive adjustments for product gallery */
+  .product-gallery {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 15px;
+    margin-top: 20px;
+  }
+
+  .product-card {
+    padding: 15px;
+  }
+
+  .product-image {
+    height: 100px;
+    font-size: 2.5rem;
+  }
+
+  .quiz-link {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+    margin: 15px 5px;
+  }
+}
+
+.garden-decoration {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 200px; 
+  overflow: hidden;
+  z-index: 1;
+}
+.garden-gif {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
+  opacity: 0.9;
+  filter: brightness(1.3) hue-rotate(25deg);
+}
+
+.dark-mode .garden-decoration {
+  opacity: 0.8;
+}
+.dark-mode .garden-gif {
+  filter: brightness(0.9) contrast(1.1);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .garden-decoration {
+    height: 150px; /* Smaller on mobile */
+  }
+  
+  .about-section {
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-bottom: 150px; 
+  }
+  
+  .about-container {
+    margin-bottom: 20px; /* Less space on mobile */
+    margin-top: 40px;
+  }
 }
