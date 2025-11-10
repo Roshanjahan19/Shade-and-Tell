@@ -10,7 +10,7 @@ const RoutineManager = ({ userId, email, onLogout }) => {
   const [position, setPosition] = useState(1);
   const [loading, setLoading] = useState(false);
 
-  const BASE_URL = "${import.meta.env.VITE_API_URL}";
+  const BASE_URL = import.meta.env.VITE_API_URL;
 
   
   const fetchRoutine = async () => {
