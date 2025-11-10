@@ -1,0 +1,221 @@
+.routine-page {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.routine-title {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #5E2F2F;
+}
+
+.routine-box {
+  background: #ffe4f0;
+  border: 4px solid #5E2F2F;
+  padding: 20px;
+  box-shadow: 4px 4px 0 rgba(94, 47, 47, 0.3);
+  margin-bottom: 30px;
+}
+
+.routine-subtitle {
+  font-size: 1.3rem;
+  margin-bottom: 10px;
+  color: #5E2F2F;
+}
+
+.routine-input {
+  width: 100%;
+  padding: 10px;
+  border: 3px solid #5E2F2F;
+  background: white;
+  margin-bottom: 15px;
+  font-family: 'Minecraft Standard';
+}
+
+.routine-btn {
+  width: 100%;
+  padding: 12px;
+  background: #ff69b4;
+  color: white;
+  border: 3px solid #5E2F2F;
+  cursor: pointer;
+  font-weight: bold;
+  font-family: 'Minecraft Standard';
+  box-shadow: 3px 3px 0 rgba(94, 47, 47, 0.3);
+}
+
+.routine-btn:hover {
+  background: #ff1493;
+}
+
+.routine-section {
+  margin-top: 20px;
+}
+
+.routine-empty {
+  color: #7a5f6e;
+  padding-left: 5px;
+}
+
+.wishlist-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.wishlist-card {
+  display: flex;
+  align-items: center;
+  background: #ffeaf3;
+  border: 3px solid #5E2F2F;
+  padding: 10px;
+  box-shadow: 3px 3px 0 rgba(94, 47, 47, 0.3);
+}
+
+.wishlist-img {
+  width: 60px;
+  height: 60px;
+  border: 2px solid #5E2F2F;
+  margin-right: 15px;
+  object-fit: contain;
+}
+
+.wishlist-img.placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: white;
+  font-size: 1.5rem;
+  color: #d14784;
+}
+
+.wishlist-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.wishlist-link {
+  font-size: 0.9rem;
+  color: #d14784;
+  text-decoration: underline;
+}
+
+.remove-btn {
+  background: #ff8fa3;
+  border: 2px solid #5E2F2F;
+  padding: 6px 10px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+.dark-mode .routine-box,
+.dark-mode .wishlist-card {
+  background: rgba(60, 60, 60, 0.8);
+  border-color: rgb(205, 244, 241);
+  color: white;
+  box-shadow: 3px 3px 0 rgba(205, 244, 241, 0.2);
+}
+
+.dark-mode .routine-input {
+  background: #fdfdfd;
+  color: black;
+  border-color: rgb(205, 244, 241);
+}
+
+.dark-mode .routine-btn {
+  background: rgb(103, 167, 251);
+  color: black;
+  border-color: rgb(205, 244, 241);
+}
+
+.dark-mode .wishlist-link {
+  color: rgb(205, 244, 241);
+}
+
+.dark-mode .routine-subtitle {
+  font-size: 1.3rem;
+  margin-bottom: 10px;
+  color:rgb(213, 240, 255);
+}
+
+.dark-mode .routine-empty {
+  color:rgb(139, 152, 152);
+  padding-left: 5px;
+}
+
+.dark-mode .routine-btn:hover {
+  background: rgb(42, 114, 207);
+}
+
+.dark-mode .wishlist-img {
+  width: 60px;
+  height: 60px;
+  border: 2px solid rgb(103, 167, 251);
+  margin-right: 15px;
+  object-fit: contain;
+}
+
+.dark-mode .wishlist-img.placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: white;
+  font-size: 1.5rem;
+  color:rgb(71, 191, 209);
+}
+
+
+.wishlist-label {
+  font-weight: bold;
+  font-size: 16px;
+  color:rgb(167, 119, 149); 
+  font-family: 'Minecraft Standard', monospace;
+  margin-right: 6px;
+}
+
+
+.wishlist-name {
+  font-size: 14px;
+  color: #5E2F2F;;
+}
+
+
+.wishlist-shade {
+  font-size: 14px;
+  color: #5E2F2F;;
+}
+
+
+.wishlist-brand {
+  font-size: 14px;
+  color: #5E2F2F;;
+}
+
+
+.dark-mode  .wishlist-label {
+  font-weight: bold;
+  font-size: 16px;
+  color:rgb(160, 167, 216); 
+  font-family: 'Minecraft Standard', monospace;
+  margin-right: 6px;
+}
+
+
+.dark-mode .wishlist-name {
+  font-size: 14px;
+  color:rgb(255, 255, 255);;
+}
+
+
+.dark-mode .wishlist-shade {
+  font-size: 14px;
+  color:rgb(255, 255, 255);;
+}
+
+
+.dark-mode .wishlist-brand {
+  font-size: 14px;
+  color:rgb(255, 255, 255);;
+}

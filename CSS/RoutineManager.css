@@ -1,0 +1,230 @@
+@font-face {
+  font-family: 'Minecraft Standard';
+  src: url('../fonts/minecraft-standard.ttf') format('truetype');
+}
+
+.routine-container {
+  max-width: 650px;
+  margin: 40px auto;
+  padding: 20px;
+  background: rgba(255, 225, 240, 0.8);
+  border: 4px solid #5E2F2F;
+  box-shadow:
+    4px 4px 0 rgba(94, 47, 47, 0.3),
+    8px 8px 0 rgba(94, 47, 47, 0.1);
+  border-radius: 0;
+  font-family: 'Minecraft Standard', monospace;
+  image-rendering: pixelated;
+}
+
+.routine-title {
+  font-size: 1.8rem;
+  text-align: center;
+  color: #5E2F2F;
+  text-shadow: 2px 2px 0 rgba(94, 47, 47, 0.3);
+  margin-bottom: 20px;
+}
+
+
+.add-step-card {
+  background: rgba(255, 186, 221, 0.3);
+  border: 3px solid #5E2F2F;
+  padding: 20px;
+  margin-bottom: 25px;
+  box-shadow:
+    3px 3px 0 rgba(94, 47, 47, 0.3),
+    6px 6px 0 rgba(94, 47, 47, 0.1);
+}
+
+.add-step-card h3 {
+  margin-bottom: 10px;
+  font-size: 1.2rem;
+}
+
+
+.add-step-card input,
+.add-step-card select {
+  width: 100%;
+  padding: 10px;
+  font-family: 'Minecraft Standard', monospace;
+  background: rgba(255,255,255,0.8);
+  border: 3px solid #5E2F2F;
+  margin-bottom: 12px;
+  image-rendering: pixelated;
+  box-shadow:
+    2px 2px 0 rgba(94, 47, 47, 0.3),
+    4px 4px 0 rgba(94, 47, 47, 0.1);
+}
+
+.add-step-card input:focus,
+.add-step-card select:focus {
+  border-color: #ff69b4;
+  box-shadow:
+    3px 3px 0 #ff69b4,
+    6px 6px 0 rgba(255, 105, 180, 0.3);
+}
+
+
+.add-btn {
+  width: 100%;
+  padding: 12px;
+  font-size: 1rem;
+  background: #ff69b4;
+  color: white;
+  border: 3px solid #5E2F2F;
+  font-family: 'Minecraft Standard', monospace;
+  cursor: pointer;
+  box-shadow:
+    3px 3px 0 rgba(94, 47, 47, 0.3),
+    6px 6px 0 rgba(94, 47, 47, 0.1);
+  transition: all .2s ease;
+}
+
+.add-btn:hover {
+  background: #ff1493;
+  transform: translateY(-2px);
+}
+
+.add-btn:disabled {
+  background: #bbb;
+  cursor: not-allowed;
+}
+
+.section-title {
+  font-size: 1.4rem;
+  margin-top: 25px;
+  margin-bottom: 10px;
+  text-shadow: 1px 1px 0 rgba(94,47,47,0.3);
+}
+
+.section-title.sun::before {
+  content: "☀️ ";
+}
+.section-title.moon::before {
+  content: "🌙 ";
+}
+
+.no-steps {
+  font-size: .9rem;
+  color: #5E2F2F;
+}
+
+.step-card {
+  background: rgba(255, 255, 255, 0.7);
+  border: 3px solid #5E2F2F;
+  padding: 15px;
+  margin-bottom: 12px;
+  box-shadow:
+    3px 3px 0 rgba(94, 47, 47, 0.3),
+    6px 6px 0 rgba(94, 47, 47, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: .3s;
+}
+
+.step-card:hover {
+  background: rgba(255, 186, 221, 0.3);
+  transform: translateX(2px);
+}
+
+.step-title {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #5E2F2F;
+}
+
+.step-desc {
+  font-size: .85rem;
+  opacity: .8;
+  color: #5E2F2F;
+}
+
+.delete-btn {
+  background: #ff4d4d;
+  color: white;
+  border: 3px solid #5E2F2F;
+  padding: 8px 12px;
+  font-family: 'Minecraft Standard', monospace;
+  cursor: pointer;
+  box-shadow:
+    3px 3px 0 rgba(94, 47, 47, 0.3),
+    6px 6px 0 rgba(94, 47, 47, 0.1);
+  transition: all .2s ease;
+}
+
+.delete-btn:hover {
+  background: #e64545;
+  transform: translateX(-2px) translateY(-2px);
+}
+
+
+body.dark-mode .routine-container {
+  background: rgba(20, 20, 20, 0.9);
+  border-color: rgb(205, 244, 241);
+  box-shadow:
+    4px 4px 0 rgba(135, 185, 179, 0.3),
+    8px 8px 0 rgba(135, 185, 179, 0.1);
+}
+
+body.dark-mode .section-title,
+body.dark-mode .routine-title {
+  color: white;
+}
+
+body.dark-mode .step-card {
+  background: rgba(0,0,0,0.4);
+  border-color: rgb(205, 244, 241);
+  color: white;
+}
+
+body.dark-mode .delete-btn {
+  border-color: rgb(205, 244, 241);
+}
+
+body.dark-mode .add-step-card {
+  background: rgba(30,30,30,0.7);
+  border-color: rgb(205,244,241);
+}
+
+body.dark-mode .add-step-card input,
+body.dark-mode .add-step-card select {
+  background: rgba(255,255,255,0.1);
+  border-color: rgb(205,244,241);
+  color: white;
+}
+
+.dark-mode .add-step-card input:focus,
+.dark-mode .add-step-card select:focus {
+  border-color:rgb(205,244,241);
+  box-shadow:
+    3px 3px 0 rgb(205,244,241),
+    6px 6px 0 rgba(205,244,241, 0.3);
+}
+
+body.dark-mode .add-btn {
+  background: rgb(103, 167, 251);
+  border-color: white;
+}
+
+.dark-mode .step-desc {
+  font-size: .85rem;
+  opacity: .8;
+  color: white;
+}
+
+.dark-mode .step-card:hover {
+  background: rgba(186, 248, 255, 0.3);
+  transform: translateX(2px);
+}
+
+.dark-mode .step-title {
+  font-size: 1rem;
+  font-weight: bold;
+  color: white;
+}
+
+.dark-mode .no-steps {
+  font-size: .9rem;
+  color:rgb(179, 179, 179);
+}

@@ -1,5 +1,9 @@
 import React, {useState, useEffect, useRef} from 'react';
 import { Moon, Sun, Volume2, VolumeX } from "lucide-react";
+import ProductRecommendationSystem from './component/ProductRecommendationSystem';
+import RoutineManager from "./component/RoutineManager";
+import Wishlist from "./component/Wishlist";
+
 
 function App(){
     const [activeNav, setActiveNav] = useState('home');
@@ -10,8 +14,142 @@ function App(){
     const [darkMode, setDarkMode] = useState(false);
     const [musicPlaying, setMusicPlaying] = useState(false);
     const [audioError, setAudioError] = useState(false);
+    const [authLoading, setAuthLoading] = useState(false);
+const [authError, setAuthError] = useState("");
+const [authMessage, setAuthMessage] = useState("");
+const [authType, setAuthType] = useState(""); // "success" or "error"
     
-    // New state for scroll animations
+    const [userId, setUserId] = useState(localStorage.getItem("user_id"));
+const [userEmail, setUserEmail] = useState(localStorage.getItem("email"));
+const [loginEmail, setLoginEmail] = useState("");
+const [mode, setMode] = useState("login"); 
+
+
+const handleLogin = async () => {
+  setAuthError("");
+  setAuthMessage("");
+  setAuthType("");
+
+  const emailRegex = /^[^\s@]+@gmail\.com$/i;
+  const email = loginEmail.trim();
+
+  if (!emailRegex.test(email)) {
+    setAuthType("error");
+    setAuthMessage("Please enter a valid Gmail address");
+    return;
+  }
+
+  try {
+    setAuthLoading(true);
+
+    
+    const checkRes = await fetch(
+      `${process.env.REACT_APP_API_URL}/users/check?email=${email}`
+    );
+    const checkData = await checkRes.json();
+
+    if (mode === "signup") {
+      if (checkData.exists) {
+        setAuthType("error");
+        setAuthMessage("This email already has an account, Try logging in?");
+        setMode("login");
+        return;
+      }
+
+      
+      const createRes = await fetch(
+        "${process.env.REACT_APP_API_URL}/users/ensure",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email })
+        }
+      );
+
+      const newUser = await createRes.json();
+
+      setUserId(newUser.user_id);
+      setUserEmail(newUser.email);
+
+      localStorage.setItem("user_id", newUser.user_id);
+      localStorage.setItem("email", newUser.email);
+
+      setAuthType("success");
+      setAuthMessage("Account created! Welcome to Shade & Tell!");
+
+      setTimeout(() => {
+        setActiveNav("routine-builder");
+      }, 1200);
+
+      return;
+    }
+
+    
+    if (!checkData.exists) {
+      setAuthType("error");
+      setAuthMessage("No account found, Want to create one?");
+      setMode("signup");
+      return;
+    }
+
+    // Login user
+    const loginRes = await fetch(
+      "${process.env.REACT_APP_API_URL}/users/ensure",
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email })
+      }
+    );
+
+    const existingUser = await loginRes.json();
+
+    setUserId(existingUser.user_id);
+    setUserEmail(existingUser.email);
+
+    localStorage.setItem("user_id", existingUser.user_id);
+    localStorage.setItem("email", existingUser.email);
+
+    setAuthType("success");
+    setAuthMessage(
+      `Welcome back, ${existingUser.email.split("@")[0]}!`
+    );
+
+    setTimeout(() => {
+      setActiveNav("routine-builder");
+    }, 1200);
+  } catch (err) {
+    console.error(err);
+    setAuthType("error");
+    setAuthMessage("Something went wrong… please try again");
+  } finally {
+    setAuthLoading(false);
+  }
+};
+
+
+
+
+
+const handleLogout = () => {
+  localStorage.removeItem("user_id");
+  localStorage.removeItem("email");
+
+  setUserId(null);
+  setUserEmail(null);
+  setActiveNav("login");
+};
+
+useEffect(() => {
+  if (activeNav === "routine-builder" && !userId) {
+    setActiveNav("login");
+  }
+}, [activeNav, userId]);
+
+
+    const [showRecommendations, setShowRecommendations] = useState(false);
+    const [selectedProduct, setSelectedProduct] = useState(null);
+    
     const [mainVisible, setMainVisible] = useState(false);
     const mainRef = useRef(null);
 
@@ -27,14 +165,13 @@ function App(){
         return audioInstance;
     });
 
-    // Three stages of text content
+    
     const textStages = [
         "Welcome to Shade and Tell! \n\n This project was inspired by the popular Korean personal color analysis test that helps you find the colors that truly flatter your unique skin tone and undertones.\nShade and Tell is here to guide you to makeup products that complement your undertone, so you can feel confident, radiant, and totally YOU ♥︎",
-        "Did you know your skin has a hidden tone beneath the surface? \n\n That’s your undertone! It's a subtle hue that never changes no matter how much you tan or how your skin reacts to the sun. While your surface skin tone might shift with seasons or exposure, your undertone remains the same throughout your life. Understanding your undertone helps you enhance your natural beauty, avoid clashing colors, and feel more confident in your look every day!",
+        "Did you know your skin has a hidden tone beneath the surface? \n\n That's your undertone! It's a subtle hue that never changes no matter how much you tan or how your skin reacts to the sun. While your surface skin tone might shift with seasons or exposure, your undertone remains the same throughout your life. Understanding your undertone helps you enhance your natural beauty, avoid clashing colors, and feel more confident in your look every day!",
         null
     ];
 
-    // Undertone data for stage 3
     const undertoneData = [
         {
             type: "Cool Undertones",
@@ -58,47 +195,52 @@ function App(){
         }
     ];
 
-    // Makeup products data
-    const makeupProducts = [
-        {
-            id: 'lipstick',
-            name: 'Lipstick',
-            image: '/Assets/lipsticks.png', 
-            description: 'Find your perfect lip color'
-        },
-        {
-            id: 'foundation',
-            name: 'Foundation',
-            image: '/Assets/foundation.png',
-            description: 'Discover your ideal foundation shade'
-        },
-        {
-            id: 'concealer',
-            name: 'Concealer',
-            image: '/Assets/concealer.png', 
-            description: 'Get the perfect concealer match'
-        },
-        {
-            id: 'contour',
-            name: 'Contour Palette',
-            image: '/Assets/contour-palette.png', 
-            description: 'Find your contouring shades'
-        },
-        {
-            id: 'bronzer',
-            name: 'Bronzer',
-            image: '/Assets/bronzer.png', 
-            description: 'Get your perfect bronzer tone'
-        },
-        {
-            id: 'blush',
-            name: 'Blush',
-            image: '/Assets/blush.png',
-            description: 'Explore your ideal blush shades'
-        }
-    ];
+   const makeupProducts = [
+  {
+    id: 'lipstick',
+    category: 'lipstick',
+    name: 'Lipstick',
+    image: '/Assets/lipsticks.png',
+    description: 'Find your perfect lip color'
+  },
+  {
+    id: 'foundation',
+    category: 'foundation',
+    name: 'Foundation',
+    image: '/Assets/foundation.png',
+    description: 'Discover your ideal foundation shade'
+  },
+  {
+    id: 'concealer',
+    category: 'concealer',
+    name: 'Concealer',
+    image: '/Assets/concealer.png',
+    description: 'Get the perfect concealer match'
+  },
+  {
+    id: 'contour',
+    category: 'contour',
+    name: 'Contour Palette',
+    image: '/Assets/contour-palette.png',
+    description: 'Find your contouring shades'
+  },
+  {
+    id: 'bronzer',
+    category: 'bronzer',
+    name: 'Bronzer',
+    image: '/Assets/bronzer.png',
+    description: 'Get your perfect bronzer tone'
+  },
+  {
+    id: 'blush',
+    category: 'blush',
+    name: 'Blush',
+    image: '/Assets/blush.png',
+    description: 'Explore your ideal blush shades'
+  }
+];
 
-    // Typing animation function
+
     const typeText = (text) => {
         setIsTyping(true);
         setTypingText('');
@@ -128,20 +270,28 @@ function App(){
         setTextStage(0);
     };
 
-    // Handle product click
+
     const handleProductClick = (productId) => {
-        // This will later navigate to a new page with undertone input
-        console.log(`Clicked on ${productId}`);
-        // For now, just alert - you can replace this with actual navigation
-        alert(`Opening ${productId} recommendation page. You'll be prompted to enter your undertone!`);
+        const product = makeupProducts.find(p => p.id === productId);
+        setSelectedProduct(product);
+        setShowRecommendations(true);
     };
 
-    // Handle undertone quiz click
+    // undertone quiz click handler
     const handleUndertoneQuiz = () => {
-        alert('Opening undertone quiz page!');
+        setSelectedProduct(null); 
+        setShowRecommendations(true);
     };
 
-    // Audio toggle function
+    const handleBackToMain = () => {
+        setShowRecommendations(false);
+        setSelectedProduct(null);
+    
+        setMainVisible(true);
+       
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
+
     const toggleMusic = async () => {
         if (audioError) {
             console.log('Audio is not available');
@@ -162,7 +312,6 @@ function App(){
         }
     };
 
-    // Intersection Observer for scroll animations
     useEffect(() => {
         const observer = new IntersectionObserver(
             (entries) => {
@@ -170,7 +319,10 @@ function App(){
                     if (entry.isIntersecting) {
                         setMainVisible(true);
                     } else {
-                        setMainVisible(false);
+                        
+                        if (showRecommendations) {
+                            setMainVisible(false);
+                        }
                     }
                 });
             },
@@ -180,7 +332,7 @@ function App(){
             }
         );
 
-        if (mainRef.current) {
+        if (mainRef.current && !showRecommendations) {
             observer.observe(mainRef.current);
         }
 
@@ -189,7 +341,16 @@ function App(){
                 observer.unobserve(mainRef.current);
             }
         };
-    }, []);
+    }, [showRecommendations]); 
+
+    useEffect(() => {
+        if (!showRecommendations) {
+           
+            setTimeout(() => {
+                setMainVisible(true);
+            }, 100);
+        }
+    }, [showRecommendations]);
 
     useEffect(() => {
         if (darkMode) {
@@ -208,8 +369,7 @@ function App(){
 
     return (
         <div>
-
-            {/*banner*/}
+            
             <header className="banner">
                 <div className="left cherry-blossom ">
                     <img src="/Assets/branch.gif" alt="cherry blossom" className='blossom-gif' />
@@ -241,25 +401,40 @@ function App(){
                             {musicPlaying ? <Volume2 size={20} /> : <VolumeX size={20} />}
                         </button>
                     </div>
-                    
+                <button
+  className={`nav-button ${activeNav === 'home' ? 'active' : ''}`}
+  onClick={() => {
+    setShowRecommendations(false);
+    setSelectedProduct(null);
+    setActiveNav('home');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }}
+>
+  Home
+</button>
                     <button 
-                        className={`nav-button ${activeNav === 'skincare' ? 'active' : ''}`} 
-                        onClick={() => setActiveNav('skincare')}
+                        className={`nav-button ${activeNav === 'login' ? 'active' : ''}`} 
+                        onClick={() => setActiveNav('login')}
                     >
-                        Skincare Journey
+                        Login
                     </button>
                     <button 
                         className={`nav-button ${activeNav === 'wishlist' ? 'active' : ''}`}
-                        onClick={() => setActiveNav('find-store')}
+                        onClick={() => setActiveNav('wishlist')}
                     >
                         Product Wishlist
                     </button>
                     <button 
                         className={`nav-button ${activeNav === 'routine-builder' ? 'active' : ''}`}
-                        onClick={() => setActiveNav('what-store')}
+                        onClick={() => {
+  if (!userId) setActiveNav("login");
+  else setActiveNav("routine-builder");
+}}
                     >
                         Makeup Routine Builder
                     </button>
+
+
                 </div>
             </nav>
 
@@ -292,20 +467,33 @@ function App(){
                 </button>
 
                 <div className={`mobile-menu ${mobileMenuOpen ? 'open' : ''}`}>
+                                        <button
+  className={`mobile-nav-button ${activeNav === 'home' ? 'active' : ''}`}
+  onClick={() => {
+    setActiveNav('home');
+    setShowRecommendations(false);
+    setSelectedProduct(null);
+    setMobileMenuOpen(false);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }}
+>
+  Home
+</button>
+                    
                     <button 
-                        className={`mobile-nav-button ${activeNav === 'skincare' ? 'active' : ''}`}
+                        className={`mobile-nav-button ${activeNav === 'login' ? 'active' : ''}`}
                         onClick={() => {
-                            setActiveNav('skincare');
+                            setActiveNav('login');
                             setMobileMenuOpen(false);
                         }}
                     >
-                        Skincare Journey
+                        Login
                     </button>
                     
                     <button 
                         className={`mobile-nav-button ${activeNav === 'wishlist' ? 'active' : ''}`}
                         onClick={() => {
-                            setActiveNav('find-store');
+                            setActiveNav('wishlist');
                             setMobileMenuOpen(false);
                         }}
                     >
@@ -315,114 +503,192 @@ function App(){
                     <button 
                         className={`mobile-nav-button ${activeNav === 'routine-builder' ? 'active' : ''}`}
                         onClick={() => {
-                            setActiveNav('what-store');
-                            setMobileMenuOpen(false);
-                        }}
+    if (!userId) {
+        setActiveNav("login");
+    } else {
+        setActiveNav("routine-builder");
+    }
+    setMobileMenuOpen(false);
+}}
+
                     >
                         Makeup Routine Builder
                     </button>
+
                 </div>
             </nav>
+            
+            
 
-            {/* About section */}
-            <section className="about-section">
-                <div className="about-container">
-                    <div 
-                        className={`about-content-no-border ${textStage < 2 ? 'about-content-pointer' : 'about-content-default'}`}
-                        onClick={handleAboutClick}
-                    >
-                        {textStage < 2 ? (
-                            <p className="about-text about-text-preformatted">
-                                {textStage === 0 ? textStages[0] : typingText}
-                                {isTyping && textStage > 0 && <span className="typing-cursor">|</span>}
-                            </p>
-                        ) : (
-                            <div className="undertone-container">
-                                {undertoneData.map((undertone, index) => (
-                                    <div key={index} className="undertone-block">
-                                        <div className="color-blocks-container">
-                                            {undertone.colorClasses.map((colorClass, colorIndex) => (
-                                                <div key={colorIndex} className={`color-block ${colorClass}`}></div>
-                                            ))}
-                                        </div>
-                                        <div className="undertone-text">
-                                            <strong>{undertone.type}:</strong> {undertone.description}
-                                        </div>
-                                    </div>
-                                ))}
-                                <p className="undertone-description">
-                                    Our color analysis helps you discover your perfect undertone match, so you can choose foundations, blushes, and lip colors that make you glow! ✨
-                                </p>
-                            </div>
-                        )}
-                        
-                        {/* Show click indicator only for first two stages */}
-                        {textStage < 2 && (textStage === 0 || !isTyping) && (
-                            <div className="click-continue">
-                                Click to continue →
-                            </div>
-                        )}
-                        
-                        {/* Show go back button at final stage */}
-                        {textStage === 2 && !isTyping && (
-                            <div className="go-back-container">
-                                <button 
-                                    className="go-back-button"
-                                    onClick={handleGoBack}
-                                >
-                                    ← Go Back to Start
-                                </button>
-                            </div>
-                        )}
-                    </div>
-                </div>
-                 {/* Garden decoration at bottom */}
-    <div className="garden-decoration">
-        <img src="/Assets/koi-fishes.gif" alt="Pixelated koi pond garden" className="garden-gif" />
+{activeNav === "login" ? (
+
+  <div className="login-page">
+    <div className="login-box">
+      <h2 className="login-title">
+        {mode === "login" ? "Login to Shade & Tell" : "Sign Up for Shade & Tell"}
+      </h2>
+
+      <input
+        type="email"
+        placeholder="Enter your Gmail"
+        value={loginEmail}
+        onChange={(e) => setLoginEmail(e.target.value)}
+        className="login-input"
+      />
+
+      {authMessage && (
+        <div className={`auth-message ${authType}`}>
+          {authMessage}
+        </div>
+      )}
+
+      <button onClick={handleLogin} className="login-btn">
+        {mode === "login" ? "Login" : "Sign Up"}
+      </button>
+
+      <div className="toggle-auth">
+        {mode === "login" ? (
+          <p>
+            New here?{" "}
+            <span className="auth-switch" onClick={() => setMode("signup")}>
+              Create an account
+            </span>
+          </p>
+        ) : (
+          <p>
+            Already have an account?{" "}
+            <span className="auth-switch" onClick={() => setMode("login")}>
+              Login
+            </span>
+          </p>
+        )}
+      </div>
     </div>
-            </section>
+  </div>
 
-            {/*main content*/}
-            <main ref={mainRef} className={`${mainVisible ? 'main-animated' : 'main-initial'}`}>
-                <div className="section-header">Discover Your Perfect Shade</div>
-                <div className="section-text">
-                    Ready to find makeup that enhances your natural beauty? Let's begin your personalized shade journey!
-                </div>
-                
-                <div className="section-text">
-                    Get started by taking a short quiz to find out about your skin undertone!
-                </div>
-                
-                <div className="quiz-container">
-                    <button className="quiz-link" onClick={handleUndertoneQuiz}>
-                        Take Undertone Quiz
-                    </button>
-                </div>
+) : activeNav === "wishlist" ? (
 
-                <div className="section-text section-text-top-margin">
-                    Or explore specific products and get personalized recommendations:
-                </div>
+  <Wishlist userId={userId} setActiveNav={setActiveNav} />
 
-                <div className="product-gallery">
-                    {makeupProducts.map((product) => (
-                        <div 
-                            key={product.id}
-                            className="product-card"
-                            onClick={() => handleProductClick(product.id)}
-                        >
-                            <div className="product-image">
-                                <img 
-                                    src={product.image} 
-                                    alt={product.name}
-                                    className="product-img"
-                                />
+) : activeNav === "routine-builder" ? (
+
+  <RoutineManager
+    userId={userId}
+    email={userEmail}
+    onLogout={handleLogout}
+  />
+
+) : showRecommendations ? (
+
+  <ProductRecommendationSystem
+    selectedProduct={selectedProduct}
+    onBackToMain={handleBackToMain}
+    userId={userId}
+    setActiveNav={setActiveNav}
+  />
+
+) : (
+                <div key="main-content"> 
+                    {/* About section */}
+                    <section className="about-section">
+                        <div className="about-container">
+                            <div 
+                                className={`about-content-no-border ${textStage < 2 ? 'about-content-pointer' : 'about-content-default'}`}
+                                onClick={handleAboutClick}
+                            >
+                                {textStage < 2 ? (
+                                    <p className="about-text about-text-preformatted">
+                                        {textStage === 0 ? textStages[0] : typingText}
+                                        {isTyping && textStage > 0 && <span className="typing-cursor">|</span>}
+                                    </p>
+                                ) : (
+                                    <div className="undertone-container">
+                                        {undertoneData.map((undertone, index) => (
+                                            <div key={index} className="undertone-block">
+                                                <div className="color-blocks-container">
+                                                    {undertone.colorClasses.map((colorClass, colorIndex) => (
+                                                        <div key={colorIndex} className={`color-block ${colorClass}`}></div>
+                                                    ))}
+                                                </div>
+                                                <div className="undertone-text">
+                                                    <strong>{undertone.type}:</strong> {undertone.description}
+                                                </div>
+                                            </div>
+                                        ))}
+                                        <p className="undertone-description">
+                                            Our color analysis helps you discover your perfect undertone match, so you can choose foundations, blushes, and lip colors that make you glow! 
+                                        </p>
+                                    </div>
+                                )}
+                                
+                                
+                                {textStage < 2 && (textStage === 0 || !isTyping) && (
+                                    <div className="click-continue">
+                                        Click to continue →
+                                    </div>
+                                )}
+                                
+                                
+                                {textStage === 2 && !isTyping && (
+                                    <div className="go-back-container">
+                                        <button 
+                                            className="go-back-button"
+                                            onClick={handleGoBack}
+                                        >
+                                            ← Go Back to Start
+                                        </button>
+                                    </div>
+                                )}
                             </div>
-                            <div className="product-name">{product.name}</div>
-                            <div className="product-description">{product.description}</div>
                         </div>
-                    ))}
+                        {/* Garden decoration at the bottom */}
+                        <div className="garden-decoration">
+                            <img src="/Assets/koi-fishes.gif" alt="Pixelated koi pond garden" className="garden-gif" />
+                        </div>
+                    </section>
+
+                    <main ref={mainRef} className={`${mainVisible ? 'main-animated' : 'main-initial'}`}>
+                        <div className="section-header">Discover Your Perfect Shade</div>
+                        <div className="section-text">
+                            Ready to find makeup that enhances your natural beauty? Let's begin your personalized shade journey!
+                        </div>
+                        
+                        <div className="section-text">
+                            Get started by taking a short quiz to find out about your skin undertone!
+                        </div>
+                        
+                        <div className="quiz-container">
+                            <button className="quiz-link" onClick={handleUndertoneQuiz}>
+                                Take Undertone Quiz
+                            </button>
+                        </div>
+
+                        <div className="section-text section-text-top-margin">
+                            Or explore specific products and get personalized recommendations:
+                        </div>
+
+                        <div className="product-gallery">
+                            {makeupProducts.map((product) => (
+                                <div 
+                                    key={product.id}
+                                    className="product-card"
+                                    onClick={() => handleProductClick(product.id)}
+                                >
+                                    <div className="product-image">
+                                        <img 
+                                            src={product.image} 
+                                            alt={product.name}
+                                            className="product-img"
+                                        />
+                                    </div>
+                                    <div className="product-name">{product.name}</div>
+                                    <div className="product-description">{product.description}</div>
+                                </div>
+                            ))}
+                        </div>
+                    </main>
                 </div>
-            </main>
+            )}
         </div>
     );
 }
