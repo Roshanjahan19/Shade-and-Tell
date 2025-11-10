@@ -44,7 +44,7 @@ const handleLogin = async () => {
 
     
     const checkRes = await fetch(
-      `${process.env.REACT_APP_API_URL}/users/check?email=${email}`
+      `${import.meta.env.VITE_API_URL}/users/check?email=${email}`
     );
     const checkData = await checkRes.json();
 
@@ -58,7 +58,7 @@ const handleLogin = async () => {
 
       
       const createRes = await fetch(
-        "${process.env.REACT_APP_API_URL}/users/ensure",
+        "${import.meta.env.VITE_API_URL}/users/ensure",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -94,7 +94,7 @@ const handleLogin = async () => {
 
     // Login user
     const loginRes = await fetch(
-      "${process.env.REACT_APP_API_URL}/users/ensure",
+      "${import.meta.env.VITE_API_URL}/users/ensure",
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },

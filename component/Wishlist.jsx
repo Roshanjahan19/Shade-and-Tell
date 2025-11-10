@@ -18,7 +18,7 @@ const Wishlist = ({ userId, setActiveNav }) => {
   }, [userId]);
 
   const fetchWishlist = async () => {
-    const res = await fetch(`${process.env.REACT_APP_API_URL}/wishlist/${userId}`);
+    const res = await fetch(`${import.meta.env.VITE_API_URL}/wishlist/${userId}`);
     const data = await res.json();
     setItems(data);
   };
@@ -27,7 +27,7 @@ const Wishlist = ({ userId, setActiveNav }) => {
   const addCustomItem = async () => {
     if (!customName.trim()) return;
 
-    await fetch("${process.env.REACT_APP_API_URL}/wishlist/add", {
+    await fetch("${import.meta.env.VITE_API_URL}/wishlist/add", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -47,7 +47,7 @@ const Wishlist = ({ userId, setActiveNav }) => {
   };
 
   const removeItem = async (id) => {
-    await fetch(`${process.env.REACT_APP_API_URL}/wishlist/${id}`, {
+    await fetch(`${import.meta.env.VITE_API_URL}/wishlist/${id}`, {
       method: "DELETE"
     });
 

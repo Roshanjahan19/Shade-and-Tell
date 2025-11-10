@@ -109,7 +109,7 @@ const ProductRecommendationSystem = ({ selectedProduct, onBackToMain, userId,
 
     try {
       const category = internalSelectedProduct?.category || '';
-      const url = `${process.env.REACT_APP_API_URL}/recommendations?tone=${userSkinShade}&undertone=${undertone}&category=${category}`;
+      const url = `${import.meta.env.VITE_API_URL}/recommendations?tone=${userSkinShade}&undertone=${undertone}&category=${category}`;
       const res = await fetch(url);
       const data = await res.json();
 
@@ -157,7 +157,7 @@ const addToWishlist = async (rec) => {
   }
 
   try {
-    await fetch("${process.env.REACT_APP_API_URL}/wishlist/add", {
+    await fetch("${import.meta.env.VITE_API_URL}/wishlist/add", {
   method: "POST",
   headers: { "Content-Type": "application/json" },
   body: JSON.stringify({
