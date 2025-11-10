@@ -58,7 +58,7 @@ const handleLogin = async () => {
 
       
       const createRes = await fetch(
-        "${import.meta.env.VITE_API_URL}/users/ensure",
+        `${import.meta.env.VITE_API_URL}/users/ensure`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -94,7 +94,7 @@ const handleLogin = async () => {
 
     // Login user
     const loginRes = await fetch(
-      "${import.meta.env.VITE_API_URL}/users/ensure",
+      `${import.meta.env.VITE_API_URL}/users/ensure`,
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },

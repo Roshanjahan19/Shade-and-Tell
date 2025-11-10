@@ -27,7 +27,7 @@ const Wishlist = ({ userId, setActiveNav }) => {
   const addCustomItem = async () => {
     if (!customName.trim()) return;
 
-    await fetch("${import.meta.env.VITE_API_URL}/wishlist/add", {
+    await fetch(`${import.meta.env.VITE_API_URL}/wishlist/add`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({

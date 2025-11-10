@@ -157,7 +157,7 @@ const addToWishlist = async (rec) => {
   }
 
   try {
-    await fetch("${import.meta.env.VITE_API_URL}/wishlist/add", {
+    await fetch(`${import.meta.env.VITE_API_URL}/wishlist/add`, {
   method: "POST",
   headers: { "Content-Type": "application/json" },
   body: JSON.stringify({
