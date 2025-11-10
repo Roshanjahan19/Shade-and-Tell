@@ -13,12 +13,12 @@ const ProductRecommendationSystem = ({ selectedProduct, onBackToMain, userId,
   const [loading, setLoading] = useState(false);
 
   const makeupProducts = [
-    { id: 'lipstick', name: 'Lipstick', category: 'lipstick', image: 'public/Assets/lipsticks.png', description: 'Find your perfect lip color' },
-    { id: 'foundation', name: 'Foundation', category: 'foundation', image: 'public/Assets/foundation.png', description: 'Discover your ideal foundation shade' },
-    { id: 'concealer', name: 'Concealer', category: 'concealer', image: 'public/Assets/concealer.png', description: 'Get the perfect concealer match' },
-    { id: 'contour', name: 'Contour Palette', category: 'contour', image: 'public/Assets/contour-palette.png', description: 'Find your contouring shades' },
-    { id: 'bronzer', name: 'Bronzer', category: 'bronzer', image: 'public/Assets/bronzer.png', description: 'Get your perfect bronzer tone' },
-    { id: 'blush', name: 'Blush', category: 'blush', image: 'public/Assets/blush.png', description: 'Explore your ideal blush shades' }
+    { id: 'lipstick', name: 'Lipstick', category: 'lipstick', image: '/Assets/lipsticks.png', description: 'Find your perfect lip color' },
+    { id: 'foundation', name: 'Foundation', category: 'foundation', image: '/Assets/foundation.png', description: 'Discover your ideal foundation shade' },
+    { id: 'concealer', name: 'Concealer', category: 'concealer', image: '/Assets/concealer.png', description: 'Get the perfect concealer match' },
+    { id: 'contour', name: 'Contour Palette', category: 'contour', image: '/Assets/contour-palette.png', description: 'Find your contouring shades' },
+    { id: 'bronzer', name: 'Bronzer', category: 'bronzer', image: '/Assets/bronzer.png', description: 'Get your perfect bronzer tone' },
+    { id: 'blush', name: 'Blush', category: 'blush', image: '/Assets/blush.png', description: 'Explore your ideal blush shades' }
   ];
 
   const quizQuestions = [
