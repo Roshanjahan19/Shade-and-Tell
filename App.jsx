@@ -154,7 +154,7 @@ useEffect(() => {
     const mainRef = useRef(null);
 
     const [audio] = useState(() =>{
-        const audioInstance = new Audio('/Assets/background-music.mp3');
+        const audioInstance = new Audio('public/Assets/background-music.mp3');
         audioInstance.loop = true;
         audioInstance.volume = 0.3;
 
@@ -200,42 +200,42 @@ useEffect(() => {
     id: 'lipstick',
     category: 'lipstick',
     name: 'Lipstick',
-    image: '/Assets/lipsticks.png',
+    image: 'public/Assets/lipsticks.png',
     description: 'Find your perfect lip color'
   },
   {
     id: 'foundation',
     category: 'foundation',
     name: 'Foundation',
-    image: '/Assets/foundation.png',
+    image: 'public/Assets/foundation.png',
     description: 'Discover your ideal foundation shade'
   },
   {
     id: 'concealer',
     category: 'concealer',
     name: 'Concealer',
-    image: '/Assets/concealer.png',
+    image: 'public/Assets/concealer.png',
     description: 'Get the perfect concealer match'
   },
   {
     id: 'contour',
     category: 'contour',
     name: 'Contour Palette',
-    image: '/Assets/contour-palette.png',
+    image: 'public/Assets/contour-palette.png',
     description: 'Find your contouring shades'
   },
   {
     id: 'bronzer',
     category: 'bronzer',
     name: 'Bronzer',
-    image: '/Assets/bronzer.png',
+    image: 'public/Assets/bronzer.png',
     description: 'Get your perfect bronzer tone'
   },
   {
     id: 'blush',
     category: 'blush',
     name: 'Blush',
-    image: '/Assets/blush.png',
+    image: 'public/Assets/blush.png',
     description: 'Explore your ideal blush shades'
   }
 ];
@@ -372,13 +372,13 @@ useEffect(() => {
             
             <header className="banner">
                 <div className="left cherry-blossom ">
-                    <img src="/Assets/branch.gif" alt="cherry blossom" className='blossom-gif' />
+                    <img src="public/Assets/branch.gif" alt="cherry blossom" className='blossom-gif' />
                 </div>
 
                 <h1 className="main-title">Shade and Tell</h1>
                 
                 <div className="right cherry-blossom">
-                    <img src="/Assets/branch.gif" alt="cherry blossom" className='blossom-gif' />
+                    <img src="public/Assets/branch.gif" alt="cherry blossom" className='blossom-gif' />
                 </div>
             </header>
 
@@ -643,7 +643,7 @@ useEffect(() => {
                         </div>
                         {/* Garden decoration at the bottom */}
                         <div className="garden-decoration">
-                            <img src="/Assets/koi-fishes.gif" alt="Pixelated koi pond garden" className="garden-gif" />
+                            <img src="public/Assets/koi-fishes.gif" alt="Pixelated koi pond garden" className="garden-gif" />
                         </div>
                     </section>
 
