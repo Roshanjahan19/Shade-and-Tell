@@ -6,8 +6,8 @@
 }
 
 @font-face {
-  font-family: 'Minecraft Standard';
-  src: url('../fonts/minecraft-standard.ttf') format('truetype');
+  font-family: "Minecraft Standard";
+  src: url("/Assets/fonts/minecraft_standard/MinecraftStandard.otf") format("opentype");
   font-weight: normal;
   font-style: normal;
 }
