@@ -23,7 +23,9 @@ const [authType, setAuthType] = useState(""); // "success" or "error"
 const [userEmail, setUserEmail] = useState(localStorage.getItem("email"));
 const [loginEmail, setLoginEmail] = useState("");
 const [mode, setMode] = useState("login"); 
-
+const typingIntervalRef = useRef(null);
+const [showSkip, setShowSkip] = useState(false);
+const typingRef = useRef(false);
 
 const handleLogin = async () => {
   setAuthError("");
@@ -241,20 +243,34 @@ useEffect(() => {
 ];
 
 
-    const typeText = (text) => {
-        setIsTyping(true);
-        setTypingText('');
-        let i = 0;
-        const timer = setInterval(() => {
-            if (i < text.length) {
-                setTypingText(text.slice(0, i + 1));
-                i++;
-            } else {
-                clearInterval(timer);
-                setIsTyping(false);
-            }
-        }, 50);
-    };
+const typeText = (text) => {
+  setIsTyping(true);
+  typingRef.current = true;
+  setTypingText('');
+  setShowSkip(false);
+
+  let i = 0;
+
+  typingIntervalRef.current = setInterval(() => {
+    if (i < text.length) {
+      setTypingText(text.slice(0, i + 1));
+      i++;
+    } else {
+      clearInterval(typingIntervalRef.current);
+      setIsTyping(false);
+      typingRef.current = false;
+      setShowSkip(false);
+    }
+  }, 50);
+
+  
+  setTimeout(() => {
+    if (typingRef.current) setShowSkip(true);
+  }, 4000);
+};
+
+
+
 
     const handleAboutClick = () => {
         if (textStage === 0) {
@@ -597,11 +613,15 @@ useEffect(() => {
                                 onClick={handleAboutClick}
                             >
                                 {textStage < 2 ? (
-                                    <p className="about-text about-text-preformatted">
-                                        {textStage === 0 ? textStages[0] : typingText}
-                                        {isTyping && textStage > 0 && <span className="typing-cursor">|</span>}
-                                    </p>
-                                ) : (
+  <>
+    <p className="about-text about-text-preformatted">
+      {textStage === 0 ? textStages[0] : typingText}
+      {isTyping && textStage > 0 && <span className="typing-cursor">|</span>}
+    </p>
+    
+
+  </>
+) : (
                                     <div className="undertone-container">
                                         {undertoneData.map((undertone, index) => (
                                             <div key={index} className="undertone-block">
@@ -615,9 +635,7 @@ useEffect(() => {
                                                 </div>
                                             </div>
                                         ))}
-                                        <p className="undertone-description">
-                                            Our color analysis helps you discover your perfect undertone match, so you can choose foundations, blushes, and lip colors that make you glow! 
-                                        </p>
+                                    
                                     </div>
                                 )}
                                 
@@ -640,6 +658,22 @@ useEffect(() => {
                                     </div>
                                 )}
                             </div>
+                             {showSkip && isTyping && (
+      <div className="skip-container">
+        <button
+          className="skip-button"
+          onClick={() => {
+            clearInterval(typingIntervalRef.current);
+            typingRef.current = false;
+            setTypingText(textStages[textStage]);
+            setIsTyping(false);
+            setShowSkip(false);
+          }}
+        >
+          Skip
+        </button>
+      </div>
+    )}
                         </div>
                         {/* Garden decoration at the bottom */}
                         <div className="garden-decoration">

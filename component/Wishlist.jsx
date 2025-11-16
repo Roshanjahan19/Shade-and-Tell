@@ -91,10 +91,10 @@ const Wishlist = ({ userId, setActiveNav }) => {
       </div>
 
       <div className="routine-section">
-        <h3 className="routine-subtitle">Your Saved Products ₊ ⊹</h3>
+        <h3 className="routine-subtitle">Saved Products ₊ ⊹</h3>
 
         {items.length === 0 ? (
-          <p className="routine-empty">Your wishlist is empty</p>
+          <p className="routine-empty">wishlist is empty</p>
         ) : (
           <div className="wishlist-cards">
             {items.map((item) => (

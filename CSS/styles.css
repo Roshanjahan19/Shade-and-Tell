@@ -794,12 +794,6 @@ main {
   margin: 20px auto;
 }
 
-.undertone-description {
-  text-align: center;
-  margin-top: 20px;
-  font-style: italic;
-}
-
 .go-back-button {
   font-family: 'Minecraft Standard', monospace;
   padding: 8px 16px;
@@ -1393,4 +1387,60 @@ body.dark-mode {
   border-color: rgb(169, 157, 157);
   color: rgb(236, 236, 236);
   box-shadow: 2px 2px 0 rgb(90, 89, 89);
+}
+
+.skip-container {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  margin-top: 15px;
+}
+
+.skip-button {
+  font-family: 'Minecraft Standard', monospace;
+  padding: 8px 16px;
+  background: #ff69b4;
+  color: white;
+  border: 3px solid #5E2F2F;
+  border-radius: 0;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  box-shadow: 
+    3px 3px 0 rgba(94, 47, 47, 0.3),
+    6px 6px 0 rgba(94, 47, 47, 0.1);
+  position: relative;
+}
+
+.skip-button:hover {
+  background: #ff1493;
+  transform: translateX(-2px) translateY(-2px);
+  box-shadow: 
+    5px 5px 0 rgba(94, 47, 47, 0.3),
+    8px 8px 0 rgba(94, 47, 47, 0.1);
+}
+
+.skip-button:active {
+  transform: translateX(1px) translateY(1px);
+  box-shadow: 
+    2px 2px 0 rgba(94, 47, 47, 0.3),
+    4px 4px 0 rgba(94, 47, 47, 0.1);
+}
+
+.dark-mode .skip-button {
+  background: rgb(103, 167, 251);
+  color: #000;
+  border-color: #fff;
+  box-shadow: 
+    3px 3px 0 rgba(255, 255, 255, 0.3),
+    6px 6px 0 rgba(255, 255, 255, 0.1);
+}
+
+.dark-mode .skip-button:hover {
+   background: rgb(168, 200, 242);
+  box-shadow: 
+    5px 5px 0 rgba(255, 255, 255, 0.3),
+    8px 8px 0 rgba(255, 255, 255, 0.1);
 }
