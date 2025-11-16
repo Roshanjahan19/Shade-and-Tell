@@ -32,15 +32,16 @@
 }
 
 .recommendation-title {
-    font-size: 2.5rem;
+    font-size: clamp(1.3rem, 4.6vw, 2.8rem);
     font-weight: bold;
     color: #333;
     margin-bottom: 1rem;
-    background: linear-gradient(135deg,rgb(241, 157, 185),rgb(174, 76, 109));
+    background: linear-gradient(135deg, rgb(241, 157, 185), rgb(174, 76, 109));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
 }
+
 
 .recommendation-subtitle {
     color: #666;
@@ -527,11 +528,7 @@
         margin: 1rem;
         padding: 1.5rem;
     }
-    
-    .recommendation-title {
-        font-size: 1.67rem;
-    }
-    
+   
     .quiz-question {
         font-size: 1.3rem;
     }
@@ -621,15 +618,13 @@
 }
 
 .dark-mode .recommendation-title {
-    font-size: 1.8rem;
+    font-size: clamp(1.3rem, 4.5vw, 2.8rem);
     font-weight: bold;
-    color: #333;
-    margin-bottom: 1rem;
-    background: linear-gradient(135deg,rgb(205, 244, 241),rgb(151, 160, 224));
+    background: linear-gradient(135deg, rgb(205, 244, 241), rgb(151, 160, 224));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    background-clip: text;
 }
+
 
 .dark-mode .form-label {
     display: block;
